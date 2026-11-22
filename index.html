@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinéPass — Inscription au Club de Cinéma</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header class="header">
+            <h1>🎬 CinéPass</h1>
+            <p>Inscription au Club de Cinéma - Saison 2025</p>
+        </header>
+
+        <!-- Le traitement POST côté serveur sera à ajouter à /inscription. -->
+        <form action="/inscription" method="post" enctype="multipart/form-data">
+            <p class="notice">💡 Rejoignez notre club et profitez de tarifs réduits, d'avant-premières exclusives et de rencontres avec des réalisateurs !</p>
+
+            <section class="form-section" aria-labelledby="informations">
+                <h2 id="informations">👤 Informations personnelles</h2>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="prenom">Prénom :</label>
+                        <input type="text" id="prenom" name="prenom" placeholder="Ex: Ahmed" autocomplete="given-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nom">Nom :</label>
+                        <input type="text" id="nom" name="nom" placeholder="Ex: Bensalem" autocomplete="family-name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Adresse email :</label>
+                    <input type="email" id="email" name="email" placeholder="votre.email@exemple.com" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe (compte en ligne) :</label>
+                    <input type="password" id="password" name="password" placeholder="Minimum 8 caractères" minlength="8" autocomplete="new-password" required>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="telephone">Téléphone :</label>
+                        <input type="tel" id="telephone" name="telephone" placeholder="0555123456" autocomplete="tel">
+                    </div>
+                    <div class="form-group">
+                        <label for="naissance">Date de naissance :</label>
+                        <input type="date" id="naissance" name="naissance" autocomplete="bday" required>
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section" aria-labelledby="abonnement">
+                <h2 id="abonnement">🎫 Formule d'abonnement</h2>
+                <fieldset>
+                    <legend>Choisissez votre formule :</legend>
+                    <label class="choice"><input type="radio" name="formule" value="basique" checked> 🥉 Basique - 4 séances/mois (2000 DA/mois)</label>
+                    <label class="choice"><input type="radio" name="formule" value="premium"> 🥈 Premium - 10 séances/mois (4500 DA/mois)</label>
+                    <label class="choice"><input type="radio" name="formule" value="illimite"> 🥇 Illimité - Séances illimitées (7000 DA/mois)</label>
+                </fieldset>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="debut">Date de début souhaité :</label>
+                        <input type="month" id="debut" name="debut" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duree">Durée d'engagement :</label>
+                        <select id="duree" name="duree" required>
+                            <option value="" selected disabled>-- Sélectionner --</option>
+                            <option value="3">3 Mois</option>
+                            <option value="6">6 Mois (-5%)</option>
+                            <option value="12">12 Mois (-10%)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="accompagnants">Nombre d'accompagnants habituels :</label>
+                    <input type="number" id="accompagnants" name="accompagnants" min="0" step="1" value="0">
+                </div>
+            </section>
+
+            <section class="form-section" aria-labelledby="preferences">
+                <h2 id="preferences">🎥 Vos préférences cinématographiques</h2>
+                <fieldset>
+                    <legend>Genres de films préférés :</legend>
+                    <label class="choice"><input type="checkbox" name="genres[]" value="action"> 💥 Action / Aventure</label>
+                    <label class="choice"><input type="checkbox" name="genres[]" value="comedie"> 😄 Comédie</label>
+                    <label class="choice"><input type="checkbox" name="genres[]" value="drame"> 🎭 Drame</label>
+                    <label class="choice"><input type="checkbox" name="genres[]" value="horreur"> 👻 Horreur / Thriller</label>
+                    <label class="choice"><input type="checkbox" name="genres[]" value="science-fiction"> 🚀 Science-fiction</label>
+                    <label class="choice"><input type="checkbox" name="genres[]" value="romance"> 💕 Romance</label>
+                    <label class="choice"><input type="checkbox" name="genres[]" value="documentaire"> 📹 Documentaire</label>
+                </fieldset>
+                <div class="form-group">
+                    <label for="langues">Langues de films (maintenir Ctrl/Cmd pour sélection multiple) :</label>
+                    <select id="langues" name="langues[]" multiple size="5">
+                        <option value="ar">العربية (Arabe)</option>
+                        <option value="fr" selected>Français</option>
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="realisateur">Réalisateur préféré (recherche) :</label>
+                    <input type="search" id="realisateur" name="realisateur" placeholder="Ex: Hitchcock, Kubrick, Tarantino...">
+                </div>
+                <div class="form-group">
+                    <label for="site">Site ou blog cinéma que vous suivez :</label>
+                    <input type="url" id="site" name="site" placeholder="https://exemple.com">
+                </div>
+            </section>
+
+            <section class="form-section" aria-labelledby="disponibilites">
+                <h2 id="disponibilites">📅 Disponibilités et préférences</h2>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="semaine">Semaine préférée :</label>
+                        <input type="week" id="semaine" name="semaine">
+                    </div>
+                    <div class="form-group">
+                        <label for="horaire">Horaire préféré :</label>
+                        <input type="time" id="horaire" name="horaire">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="premiere">Première séance souhaitée :</label>
+                    <input type="datetime-local" id="premiere" name="premiere">
+                </div>
+                <div class="form-group">
+                    <label for="frequence">À quelle fréquence allez-vous au cinéma actuellement ?</label>
+                    <div class="range-row">
+                        <input type="range" id="frequence" name="frequence" min="0" max="20" value="4">
+                        <output id="frequence-valeur" for="frequence">4</output>
+                        <span>fois/mois</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="couleur">Couleur de votre carte de membre :</label>
+                    <input type="color" id="couleur" name="couleur" value="#ef4444">
+                </div>
+            </section>
+
+            <section class="form-section" aria-labelledby="documents">
+                <h2 id="documents">📎 Documents et informations complémentaires</h2>
+                <div class="form-group">
+                    <label for="photo">Photo d'identité (pour la carte) :</label>
+                    <input type="file" id="photo" name="photo" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="justificatif">Justificatif étudiant (optionnel, -20% sur l'abonnement) :</label>
+                    <input type="file" id="justificatif" name="justificatif" accept=".pdf,.jpg,.jpeg,.png">
+                </div>
+                <div class="form-group">
+                    <label for="passion">Parlez-nous de votre passion pour le cinéma :</label>
+                    <textarea id="passion" name="passion" rows="6" placeholder="Quel est votre film préféré ? Pourquoi aimez-vous le cinéma ? Des suggestions pour le club ?"></textarea>
+                </div>
+                <input type="hidden" name="parrainage" value="CINEPASS2025">
+                <p class="hint">Code de parrainage appliqué automatiquement</p>
+            </section>
+
+            <div class="submit-row"><button type="submit">🎬 Rejoindre CinéPass</button></div>
+        </form>
+    </main>
+    <script>
+        const frequence = document.getElementById('frequence');
+        frequence.addEventListener('input', () => {
+            document.getElementById('frequence-valeur').value = frequence.value;
+        });
+
+        document.querySelectorAll('input[type="file"]').forEach((input) => {
+            input.addEventListener('dragover', (event) => {
+                event.preventDefault();
+                input.classList.add('dragover');
+            });
+            input.addEventListener('dragleave', () => input.classList.remove('dragover'));
+            input.addEventListener('drop', (event) => {
+                event.preventDefault();
+                input.classList.remove('dragover');
+                const file = event.dataTransfer.files[0];
+                if (!file) return;
+                const accepted = input.id === 'photo'
+                    ? file.type.startsWith('image/')
+                    : /\.(pdf|jpe?g|png)$/i.test(file.name);
+                if (!accepted) {
+                    input.setCustomValidity('Veuillez choisir un fichier au format autorisé.');
+                    input.reportValidity();
+                    return;
+                }
+                const transfer = new DataTransfer();
+                transfer.items.add(file);
+                input.files = transfer.files;
+                input.setCustomValidity('');
+            });
+            input.addEventListener('change', () => input.setCustomValidity(''));
+        });
+    </script>
+</body>
+</html>
